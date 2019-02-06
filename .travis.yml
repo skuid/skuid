@@ -4,3 +4,6 @@ go:
 
 services:
   - docker
+
+after_success:
+  - make release
