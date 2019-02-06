@@ -3,7 +3,7 @@ GO_PKGS = $$(go list ./... | grep -v vendor)
 REPOSITORY = 095427547185.dkr.ecr.us-west-2.amazonaws.com/skuid/skuid
 TAG = latest
 VOL_PATH=/go/src/github.com/skuid/skuid
-GO_VERSION=1.8
+GO_VERSION=1.11.4
 IMAGE ?= golang
 
 ARCH=amd64
@@ -38,7 +38,6 @@ push:
 	docker push $(REPOSITORY):$(TAG)
 
 release:
-	git tag $(VERSION)
 	GOOS=linux GOARCH=amd64 go build -o skuid_linux_amd64
 	GOOS=darwin GOARCH=amd64 go build -o skuid_darwin_amd64
 	GOOS=windows GOARCH=amd64 go build -o skuid_windows_amd64.exe
